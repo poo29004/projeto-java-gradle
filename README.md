@@ -6,11 +6,13 @@ Segundo a documentação do gradle, a maneira recomendada para executar uma cons
 
 ## Baixando o gradle
 
-Caso não deseje instalar o gradle em seu sistema operacional, por exemplo, por meio de gerenciador pacotes como o [apt](https://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) do Linux ou mesmo [SDKMAN](https://sdkman.io) (disponível para Linux e macOS), é possível baixar e instalar o gradle por meio do script gradle wrapper, que está contido nesse repositório. Para instalar o gradle versão 6.0.1, execute (no Linux ou macOS, no windows use o `gradlew.bat`):
+Caso não deseje instalar o gradle em seu sistema operacional, por exemplo, por meio de gerenciador pacotes como o [apt](https://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) do Linux ou mesmo [SDKMAN](https://sdkman.io) (disponível para Linux e macOS), é possível baixar e instalar o gradle por meio do script gradle wrapper, que está contido nesse repositório. 
+Para instalar o gradle versão 6.0.1, no Linux ou macOS, execute: 
 
 ```bash
-./gradlew wrapper --gradle-version=6.0.1 --distribution-type=bin
+./gradlew
 ```
+> No Windows use o script`gradlew.bat`
 
 ## Criando um projeto de uma aplicação Java
 
@@ -54,20 +56,46 @@ Toda configuração do projeto fica dentro arquivo `build.gradle`. Ali poderá a
 Note que o gradle criou uma classe exemplo `engtelecom.poo.App.java`, bem como uma classe de teste exemplo `engtelecom.poo.AppTest.java`. Você poderá excluir ou alterar esses arquivos sem problema algum. Contudo, se alterar o nome do arquivo `engtelecom.poo.App.java`, lembre de atualizar o arquivo `build.gradle`, pois há uma referência para essa classe lá.
 
 ## Compilando a aplicação
-
 As tarefas que o gradle possui poderão ser listadas com o comando `./gradlew tasks`. Para compilar a aplicação execute a tarefa `build`:
 ```bash
 ./gradlew build
 ```
-Será criado um subdiretório `build` onde ficará armazenado o arquivo `.jar` com a aplicação empacotada. Para executar essa aplicação, faça:
+Será criado um subdiretório `build` onde ficará armazenado o arquivo `.jar` com todas as classes da aplicação empacotadas. 
+
+## Executando a aplicação
+
+### Usando gradle
+Para executar essa aplicação usando o gradle, faça:
+```bash
+./gradlew run
+```
+### Usando o `java`
+
+Da forma que o arquivo `.jar` foi gerado, para executar a aplicação é necessário informar o nome da classe que tem o método `main`.
 
 ```bash
 java -cp build/libs/PrimeiroExemplo.jar engtelecom.poo.App
 ```
 
+É possível criar um arquivo `.jar` executável de forma que não seja necessário informar o nome da classe que se deseja executar. Para tal, edite o arquivo `build.gradle` e adicione as seguintes linhas logo abaixo do bloco já existente chamado `dependecies`:
+```groovy
+jar {
+    manifest {
+        // Classe principal da aplicação
+        attributes "Main-Class": "engtelecom.poo.App"
+    }
+}
+```
+Por fim, compile o projeto com o comando `./gradlew build` e execute a aplicação com a linha abaixo:
+```bash
+java -jar build/libs/PrimeiroExemplo.jar
+```
+
+Veja mais sobre arquivo manifesto do JAR na [documentação oficial da Oracle](https://docs.oracle.com/javase/tutorial/deployment/jar/manifestindex.html).
+
 ## Executando os testes de unidade
 
-Execute a tarefa `./gradlew test` e um relatório em HTML será colocado no subdiretório `build/reports/tests/test`. Se algum teste não passar, então o gradle lançará um aviso após a execução da tarefa. Pore exemplo:
+Execute a tarefa `./gradlew test` e um relatório em HTML será colocado no subdiretório `build/reports/tests/test`. Se algum teste não passar, então o gradle lançará um aviso após a execução da tarefa. Por exemplo:
 ```bash
 > Task :test FAILED
 
