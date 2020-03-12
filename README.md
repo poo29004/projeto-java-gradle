@@ -12,7 +12,7 @@ Para instalar o gradle versão 6.0.1, no Linux ou macOS, execute:
 ```bash
 ./gradlew
 ```
-> No Windows use o script`gradlew.bat`
+> No Windows use o script `gradlew.bat`
 
 ## Criando um projeto de uma aplicação Java
 
@@ -69,7 +69,7 @@ Para executar essa aplicação usando o gradle, faça:
 ```bash
 ./gradlew run
 ```
-### Usando o `java`
+### Usando o java
 
 Da forma que o arquivo `.jar` foi gerado, para executar a aplicação é necessário informar o nome da classe que tem o método `main`.
 
@@ -77,7 +77,7 @@ Da forma que o arquivo `.jar` foi gerado, para executar a aplicação é necess�
 java -cp build/libs/PrimeiroExemplo.jar engtelecom.poo.App
 ```
 
-É possível criar um arquivo `.jar` executável de forma que não seja necessário informar o nome da classe que se deseja executar. Para tal, edite o arquivo `build.gradle` e adicione as seguintes linhas logo abaixo do bloco já existente chamado `dependecies`:
+É possível criar um arquivo `.jar` executável de forma que não seja necessário informar o nome da classe que se deseja executar. Para tal, edite o arquivo `build.gradle` e adicione as seguintes linhas logo abaixo do bloco já existente chamado `dependencies`:
 ```groovy
 jar {
     manifest {
