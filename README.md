@@ -7,7 +7,7 @@ Segundo a documentação do gradle, a maneira recomendada para executar uma cons
 ## Baixando o gradle
 
 Caso não deseje instalar o gradle em seu sistema operacional, por exemplo, por meio de gerenciador pacotes como o [apt](https://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) do Linux ou mesmo [SDKMAN](https://sdkman.io) (disponível para Linux e macOS), é possível baixar e instalar o gradle por meio do script gradle wrapper, que está contido nesse repositório. 
-Para instalar o gradle versão 6.0.1, no Linux ou macOS, execute: 
+Para instalar o gradle versão 6.3, no Linux ou macOS, execute: 
 
 ```bash
 ./gradlew
@@ -17,6 +17,45 @@ Para instalar o gradle versão 6.0.1, no Linux ou macOS, execute:
 ## Criando um projeto de uma aplicação Java
 
 O gradle possui um grande conjunto de [plugins](https://plugins.gradle.org/), aqui será feito uso do plugin para criar aplicação Java. Para criar uma estrutura básica de uma [aplicação Java](https://docs.gradle.org/current/userguide/build_init_plugin.html), com o nome "PrimeiroExemplo", com um pacote Java `engtelecom.poo` e fazendo uso do framework de teste unidade JUnit4, execute:
+
+```bash
+./gradlew init
+```
+e responda:
+```
+Select type of project to generate:
+  1: basic
+  2: application
+  3: library
+  4: Gradle plugin
+Enter selection (default: basic) [1..4] 2
+
+Select implementation language:
+  1: C++
+  2: Groovy
+  3: Java
+  4: Kotlin
+  5: Swift
+Enter selection (default: Java) [1..5] 3
+
+Select build script DSL:
+  1: Groovy
+  2: Kotlin
+Enter selection (default: Groovy) [1..2] 1
+
+Select test framework:
+  1: JUnit 4
+  2: TestNG
+  3: Spock
+  4: JUnit Jupiter
+Enter selection (default: JUnit 4) [1..4] 1
+
+Project name (default: projeto-java-gradle): PrimeiroExemplo
+
+Source package (default: PrimeiroExemplo): engtelecom.poo
+```
+
+Ou execute a linha abaixo, caso não queira fazer uso do menu interativo apresentado acima.
 
 ```bash
 ./gradlew init --type java-application --test-framework junit --dsl groovy --project-name "PrimeiroExemplo" --package "engtelecom.poo"
@@ -104,4 +143,3 @@ engtelecom.poo.AppTest > testAppHasAGreeting FAILED
 
 1 test completed, 1 failed
 ```
-
