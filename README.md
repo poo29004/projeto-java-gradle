@@ -199,10 +199,10 @@ engtelecom.poo.AppTest > testAppHasAGreeting FAILED
 1 test completed, 1 failed
 ```
 
-## Para atualizar a versão do gradle
+## Para atualizar para a última versão do gradle
 
-Veja documentação oficial que está disponível em https://docs.gradle.org/current/userguide/upgrading_version_7.html
+Veja documentação oficial que está disponível em https://docs.gradle.org/current/userguide/upgrading_version_8.html
 
 ```bash
-gradle wrapper --gradle-version 7.1.1
+gradle wrapper --gradle-version latest
 ```
